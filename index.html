@@ -17,28 +17,37 @@
 
     <div class="container" ng-app="myApp" ng-controller="myCtrl" style="margin-top: 10vh">
         <div class="row">
+            <div class="col-md-12" >
+                <h2 style="text-align: center; margin-bottom: 10vh"> AngularJS Quiz  </h2>
+            </div>
             <div class="col-md-4">
 
                 <ul>
                     <li ng-repeat="todo in todos">
                         <input type="checkbox" ng-model="todo.selected" />
-                        <span class="done-{{todo.selected}}">{{todo.text}}</span>
+                        <span class="done-{{todo.selected}}" >{{todo.text}}</span>
                     </li>
                 </ul>
 
 
 
-                <br>
-                <button class="btn btn-danger" ng-click="deleteSelected()"> Delete All Selected </button>
-                <button class="btn btn-primary" ng-click="selectAll()"> Select All </button>
-
 
             </div>
             <div class="col-md-4">
                 <form>
-                    <input class="form-control" placeholder="New Todo" type="text" ng-model="todoText" />
-                    <button class="btn" ng-click="add()"> Add </button>
+                   <div class="row">
+                        
+                   
+                       <div class="col-md-8"> <input class="form-control" placeholder="Write here to add todo .." type="text" ng-model="todoText" /> </div>
+                       <div class="col-md-4">  <button class="btn"  ng-click="add()"> Add </button> </div>
+                   </div>
                 </form>
+
+                
+                <br>
+                <button class="btn btn-danger" ng-click="deleteSelected()"> Delete All Selected </button>
+                <button class="btn btn-primary" ng-click="selectAll()"> Select All </button>
+
             </div>
 
         </div>
