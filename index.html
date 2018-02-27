@@ -10,32 +10,42 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
 
 <body>
 
 
-    <div class="container" ng-app="myApp" ng-controller="myCtrl">
+    <div class="container" ng-app="myApp" ng-controller="myCtrl" style="margin-top: 10vh">
         <div class="row">
-            <div class="col-md-12">
-                <div>
-                    <ul>
-                        <li ng-repeat="todo in todos">
-                            <input type="checkbox" ng-model="todo.selected" />
-                            <span class="done-{{todo.selected}}">{{todo.text}}</span>
-                        </li>
-                    </ul>
- 
-                    <form>
-                            <input class="input" placeholder="New Todo" type="text" ng-model="todoText"  />
-                            <button class="btn" ng-click="add()"> Add </button>
-                          </form>
-                </div>
+            <div class="col-md-4">
+
+                <ul>
+                    <li ng-repeat="todo in todos">
+                        <input type="checkbox" ng-model="todo.selected" />
+                        <span class="done-{{todo.selected}}">{{todo.text}}</span>
+                    </li>
+                </ul>
+
+
+
+                <br>
+                <button class="btn btn-danger" ng-click="deleteSelected()"> Delete All Selected </button>
+                <button class="btn btn-primary" ng-click="selectAll()"> Select All </button>
+
+
+            </div>
+            <div class="col-md-4">
+                <form>
+                    <input class="form-control" placeholder="New Todo" type="text" ng-model="todoText" />
+                    <button class="btn" ng-click="add()"> Add </button>
+                </form>
             </div>
 
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 
     <script>
         var app = angular.module('myApp', []);
@@ -58,8 +68,20 @@
                 $scope.todoText = '';
             };
 
-           
-           
+
+            $scope.selectAll = function () {
+                $scope.todos = _.map($scope.todos, function (todo) {
+                    todo.selected = true;
+                    return todo
+                });
+            }
+
+            $scope.deleteSelected = function () {
+                $scope.todos = _.filter($scope.todos, function (todo) {
+                    return !todo.selected;
+                });
+            };
+
 
         });
     </script>
