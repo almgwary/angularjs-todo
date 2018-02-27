@@ -39,10 +39,17 @@
         app.controller('myCtrl', function ($scope) {
 
 
+            $scope.getTotalTodos = function () {
+                return $scope.todos.length;
+            };
+
+
             $scope.todos = [
                 { text: 'First Todo', selected: false },
                 { text: 'Second Todo', selected: true }
             ];
+
+           
 
         });
     </script>
