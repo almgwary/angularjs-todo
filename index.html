@@ -26,7 +26,10 @@
                         </li>
                     </ul>
  
-
+                    <form>
+                            <input class="input" placeholder="New Todo" type="text" ng-model="todoText"  />
+                            <button class="btn" ng-click="add()"> Add </button>
+                          </form>
                 </div>
             </div>
 
@@ -49,6 +52,13 @@
                 { text: 'Second Todo', selected: true }
             ];
 
+
+            $scope.add = function () {
+                $scope.todos.push({ text: $scope.todoText, selected: false });
+                $scope.todoText = '';
+            };
+
+           
            
 
         });
